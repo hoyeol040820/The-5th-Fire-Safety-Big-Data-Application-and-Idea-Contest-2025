@@ -1,4 +1,4 @@
 행정동 경계 - https://www.vworld.kr/dtmk/dtmk_ntads_s002.do?dsId=30017
 행정구역시군구 경계 - https://www.vworld.kr/dtmk/dtmk_ntads_s002.do?datIde=30604&dsId=30604&pageIndex=1&pageSize=10&pageUnit=10&paginationInfo=egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo%404c720782&datPageIndex=2&datPageSize=10
-구급출동 칼럼 정보 - https://www.bigdata-119.kr/goods/goodsInfo?goods_mng_sn=360
+구조출동 칼럼 정보 - https://www.bigdata-119.kr/goods/goodsInfo?goods_mng_sn=360
 취약자 정보 - https://www.bigdata-119.kr/goods/goodsInfo?goods_mng_sn=3
