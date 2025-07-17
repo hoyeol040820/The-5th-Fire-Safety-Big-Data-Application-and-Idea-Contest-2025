@@ -46,7 +46,3 @@ venv.bak/
 
 # Jupyter Notebook
 .ipynb_checkpoints
-
-# Data files (if needed)
-*.csv~
-*.tmp 
