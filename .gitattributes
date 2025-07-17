@@ -1,0 +1,22 @@
+# Text files should be normalized (Unix line endings on checkout)
+* text=auto
+
+# Ensure Python files are treated as text and use UTF-8
+*.py text eol=lf encoding=utf-8
+*.csv text eol=lf encoding=utf-8
+*.txt text eol=lf encoding=utf-8
+*.md text eol=lf encoding=utf-8
+
+# Binary files
+*.pdf binary
+*.jpg binary
+*.png binary
+*.gif binary
+*.zip binary
+
+# GIS files
+*.shp binary
+*.dbf binary
+*.shx binary
+*.prj text eol=lf encoding=utf-8
+*.cpg text eol=lf encoding=utf-8 
