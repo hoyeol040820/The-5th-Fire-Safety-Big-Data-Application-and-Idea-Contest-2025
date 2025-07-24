@@ -179,6 +179,20 @@ def create_dong_vulnerable_age_heatmap():
             density_normalized = row.get('밀도_normalized', np.nan)
             fill_color = get_color(density_normalized)
             
+            # 구명, 동명 표시 형식 개선 - N/A 방지
+            # 구명 우선순위: 병합된 구명 > 매핑된 구명 > ADM_CD로 역추적
+            if pd.notna(row.get('구명')):
+                gu_name = row['구명']
+            elif pd.notna(row.get('ADM_CD')):
+                # ADM_CD에서 구 코드 추출하여 매핑
+                gu_code = str(row['ADM_CD'])[:5]
+                gu_name = gu_code_mapping.get(gu_code, f'구_{gu_code}')
+            else:
+                gu_name = 'N/A구'
+            
+            dong_name = row['ADM_NM'] if pd.notna(row.get('ADM_NM')) else 'N/A동'
+            title_text = f"{gu_name}, {dong_name}"
+            
             # 동 경계에 색상 적용
             folium.GeoJson(
                 row.geometry,
@@ -192,7 +206,7 @@ def create_dong_vulnerable_age_heatmap():
                 popup=folium.Popup(
                     f"""
                     <div style="font-family: Arial; padding: 10px; width: 260px;">
-                    <h4 style="margin: 0; color: #1E3A8A;">👶🧓 {row['구명'] if pd.notna(row.get('구명')) else row.get('ADM_NM', 'N/A')} {row['동명'] if pd.notna(row.get('동명')) else 'N/A'}</h4>
+                    <h4 style="margin: 0; color: #1E3A8A;">👶🧓 {title_text}</h4>
                     <hr style="margin: 5px 0;">
                     <p><strong>📊 취약연령 밀도:</strong> {row['취약연령밀도'] if pd.notna(row.get('취약연령밀도')) else 0:.2f} 명/km²</p>
                     <p><strong>📈 정규화 값:</strong> {row['밀도_normalized'] if pd.notna(row.get('밀도_normalized')) else 0:.3f}</p>
@@ -208,7 +222,7 @@ def create_dong_vulnerable_age_heatmap():
                     """,
                     max_width=300
                 ),
-                tooltip=f"{row['구명'] if pd.notna(row.get('구명')) else row.get('ADM_NM', 'N/A')} {row['동명'] if pd.notna(row.get('동명')) else 'N/A'}: {row['취약연령밀도'] if pd.notna(row.get('취약연령밀도')) else 0:.0f} 명/km²"
+                tooltip=f"{title_text}: {row['취약연령밀도'] if pd.notna(row.get('취약연령밀도')) else 0:.0f} 명/km²"
             ).add_to(m)
         
         # 12. 범례 추가
