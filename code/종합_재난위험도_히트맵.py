@@ -244,10 +244,10 @@ def create_comprehensive_disaster_risk_heatmap():
         dong_integrated['구조출동_정규화'] = scaler.fit_transform(dong_integrated[['구조출동밀도']]).flatten()
         
         # 가중치 적용 및 종합 점수 계산
-        dong_integrated['취약연령_가중'] = dong_integrated['취약연령_정규화'] * 0.3
-        dong_integrated['취약자_가중'] = dong_integrated['취약자_정규화'] * 0.3
-        dong_integrated['노후주택_가중'] = dong_integrated['노후주택_정규화'] * 0.2
-        dong_integrated['구조출동_가중'] = dong_integrated['구조출동_정규화'] * 0.2
+        dong_integrated['취약연령_가중'] = dong_integrated['취약연령_정규화'] * 0.286
+        dong_integrated['취약자_가중'] = dong_integrated['취약자_정규화'] * 0.324
+        dong_integrated['노후주택_가중'] = dong_integrated['노후주택_정규화'] * 0.466
+        dong_integrated['구조출동_가중'] = dong_integrated['구조출동_정규화'] * (-0.07)
         
         # 종합 재난 위험도 점수 계산
         dong_integrated['종합위험도'] = (
@@ -356,10 +356,10 @@ def create_comprehensive_disaster_risk_heatmap():
                     <hr style="margin: 5px 0;">
                     <div style="font-size: 12px;">
                     <p><strong>📊 구성 요소 (가중치):</strong></p>
-                    <p>👶🧓 취약연령 (30%): {row.get('취약연령_가중', 0):.3f}</p>
-                    <p>🚨 재난취약자 (30%): {row.get('취약자_가중', 0):.3f}</p>
-                    <p>🏠 노후주택 (20%): {row.get('노후주택_가중', 0):.3f}</p>
-                    <p>🚒 구조출동 (20%): {row.get('구조출동_가중', 0):.3f}</p>
+                    <p>👶🧓 취약연령 (28.6%): {row.get('취약연령_가중', 0):.3f}</p>
+                    <p>🚨 재난취약자 (32.4%): {row.get('취약자_가중', 0):.3f}</p>
+                    <p>🏠 노후주택 (46.6%): {row.get('노후주택_가중', 0):.3f}</p>
+                    <p>🚒 구조출동 (-7%): {row.get('구조출동_가중', 0):.3f}</p>
                     </div>
                     <hr style="margin: 5px 0;">
                     <div style="font-size: 11px; color: #666;">
@@ -391,10 +391,10 @@ def create_comprehensive_disaster_risk_heatmap():
         <div style="margin-bottom: 15px;">
             <p style="margin: 5px 0; font-weight: 600; color: #4A0080;">📊 구성 요소 및 가중치:</p>
             <div style="background: #F8F0FF; padding: 10px; border-radius: 8px; font-size: 11px;">
-                <p style="margin: 2px 0;">👶🧓 <strong>취약연령층 밀도</strong>: 30%</p>
-                <p style="margin: 2px 0;">🚨 <strong>재난안전취약자 밀도</strong>: 30%</p>
-                <p style="margin: 2px 0;">🏠 <strong>노후주택 밀도</strong>: 20%</p>
-                <p style="margin: 2px 0;">🚒 <strong>구조출동 밀도</strong>: 20%</p>
+                <p style="margin: 2px 0;">👶🧓 <strong>취약연령층 밀도</strong>: 28.6%</p>
+                <p style="margin: 2px 0;">🚨 <strong>재난안전취약자 밀도</strong>: 32.4%</p>
+                <p style="margin: 2px 0;">🏠 <strong>노후주택 밀도</strong>: 46.6%</p>
+                <p style="margin: 2px 0;">🚒 <strong>구조출동 밀도</strong>: -0.07%</p>
             </div>
         </div>
         
